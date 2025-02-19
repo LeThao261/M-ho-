@@ -1,0 +1,31 @@
+def ndmod(e, phi):
+    return pow(e, -1, phi)
+
+def chu_so(text):
+    return [ord(char) for char in text]
+
+def so_chu(numbers):
+    return ''.join(chr(num) for num in numbers)
+
+def mahoa_rsa(text, e, n):
+    numbers = chu_so(text)
+    return [pow(num, e, n) for num in numbers]
+
+def giaima_rsa(cipher, d, n):
+    numbers = [pow(num, d, n) for num in cipher]
+    return so_chu(numbers)
+
+p = 17
+q = 23
+e = 5
+
+n = p * q
+phi_n = (p - 1) * (q - 1)
+d = ndmod(e, phi_n)
+
+
+P = "Lê Phương Thảo"
+ban_ma = mahoa_rsa(P, e, n)
+
+print("Bản rõ:", P)
+print("Bản mã:", ban_ma)
